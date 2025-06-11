@@ -31,4 +31,28 @@ public class SocioService {
     public void deleteSocio(Long id) {
         socioRepository.deleteById(id);
     }
+ // Buscar por nombre o apellidos
+    public List<SocioEntity> searchByNombreOrApellidos(String searchTerm) {
+        return socioRepository.findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(searchTerm, searchTerm);
+    }
+
+    // Buscar por email
+    public Optional<SocioEntity> getSocioByEmail(String email) {
+        return socioRepository.findByEmail(email);
+    }
+
+    // Filtrar por estado
+    public List<SocioEntity> getSociosByEstado(String estado) {
+        return socioRepository.findByEstado(estado);
+    }
+
+    // Filtrar por tipo de socio
+    public List<SocioEntity> getSociosByTipoSocio(String tipoSocio) {
+        return socioRepository.findByTipoSocio(tipoSocio);
+    }
+
+    // Filtrar socios que han aceptado el RGPD
+    public List<SocioEntity> getSociosQueHanAceptadoRgpd() {
+        return socioRepository.findByAceptacionRgpdIsNotNull();
+    }
 }

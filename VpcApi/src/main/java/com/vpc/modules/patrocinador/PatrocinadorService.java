@@ -31,4 +31,23 @@ public class PatrocinadorService {
     public void deletePatrocinador(Long id) {
         patrocinadorRepository.deleteById(id);
     }
+ // Filtrar patrocinadores visibles
+    public List<PatrocinadorEntity> getPatrocinadoresVisibles() {
+        return patrocinadorRepository.findByVisibleTrue();
+    }
+
+    // Filtrar patrocinadores ocultos
+    public List<PatrocinadorEntity> getPatrocinadoresOcultos() {
+        return patrocinadorRepository.findByVisibleFalse();
+    }
+
+    // Obtener patrocinadores ordenados
+    public List<PatrocinadorEntity> getPatrocinadoresOrdenados() {
+        return patrocinadorRepository.findAllByOrderByOrdenAsc();
+    }
+
+    // Buscar patrocinadores por nombre
+    public List<PatrocinadorEntity> searchPatrocinadoresByNombre(String nombre) {
+        return patrocinadorRepository.findByNombreContainingIgnoreCase(nombre);
+    }
 }

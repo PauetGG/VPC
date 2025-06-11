@@ -36,4 +36,27 @@ public class PatrocinadorController {
     public void deletePatrocinador(@PathVariable Long id) {
         patrocinadorService.deletePatrocinador(id);
     }
+ // Obtener patrocinadores visibles
+    @GetMapping("/visibles")
+    public List<PatrocinadorEntity> getPatrocinadoresVisibles() {
+        return patrocinadorService.getPatrocinadoresVisibles();
+    }
+
+    // Obtener patrocinadores ocultos
+    @GetMapping("/ocultos")
+    public List<PatrocinadorEntity> getPatrocinadoresOcultos() {
+        return patrocinadorService.getPatrocinadoresOcultos();
+    }
+
+    // Obtener patrocinadores ordenados
+    @GetMapping("/ordenados")
+    public List<PatrocinadorEntity> getPatrocinadoresOrdenados() {
+        return patrocinadorService.getPatrocinadoresOrdenados();
+    }
+
+    // Buscar patrocinadores por nombre
+    @GetMapping("/search")
+    public List<PatrocinadorEntity> searchPatrocinadoresByNombre(@RequestParam("nombre") String nombre) {
+        return patrocinadorService.searchPatrocinadoresByNombre(nombre);
+    }
 }
