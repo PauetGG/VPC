@@ -9,5 +9,9 @@ import org.springframework.stereotype.Repository;
 public interface ClubInfoRepository extends JpaRepository<ClubInfoEntity, Long>{
 	
 	List<ClubInfoEntity> findBySeccion(String seccion);
+	
+	List<ClubInfoEntity> findBySeccionOrderByOrdenAsc(String seccion);
+
+    List<ClubInfoEntity> findByTituloContainingIgnoreCaseOrContenidoContainingIgnoreCase(String titulo, String contenido);
 
 }

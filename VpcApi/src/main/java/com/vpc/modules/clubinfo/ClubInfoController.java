@@ -42,4 +42,27 @@ public class ClubInfoController {
     public void deleteClubInfo(@PathVariable Long id) {
         clubInfoService.deleteClubInfo(id);
     }
+ // Obtener registros de una sección ordenados
+    @GetMapping("/seccion/{seccion}/ordenado")
+    public List<ClubInfoEntity> getClubInfoBySeccionYOrden(@PathVariable String seccion) {
+        return clubInfoService.getClubInfoBySeccionYOrden(seccion);
+    }
+
+    // Buscar registros
+    @GetMapping("/search")
+    public List<ClubInfoEntity> searchClubInfo(@RequestParam String q) {
+        return clubInfoService.searchClubInfo(q);
+    }
+
+    // Cambiar imagen principal
+    @PostMapping("/{id}/cambiar-imagen")
+    public ClubInfoEntity toggleImagenPrincipal(@PathVariable Long id, @RequestParam String nuevaImagen) {
+        return clubInfoService.toggleImagenPrincipal(id, nuevaImagen);
+    }
+
+    // Cambiar orden
+    @PostMapping("/{id}/cambiar-orden")
+    public ClubInfoEntity toggleOrden(@PathVariable Long id, @RequestParam Integer nuevoOrden) {
+        return clubInfoService.toggleOrden(id, nuevoOrden);
+    }
 }

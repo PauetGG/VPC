@@ -36,4 +36,18 @@ public class EquipoController {
     public void deleteEquipo(@PathVariable Long id) {
         equipoService.deleteEquipo(id);
     }
+    @GetMapping("/search")
+    public List<EquipoEntity> searchEquipos(@RequestParam String q) {
+        return equipoService.searchEquipos(q);
+    }
+
+    @GetMapping("/con-descripcion")
+    public List<EquipoEntity> getEquiposConDescripcion() {
+        return equipoService.getEquiposConDescripcion();
+    }
+
+    @PostMapping("/{id}/cambiar-descripcion")
+    public EquipoEntity toggleDescripcion(@PathVariable Long id, @RequestParam String nuevaDescripcion) {
+        return equipoService.toggleDescripcion(id, nuevaDescripcion);
+    }
 }

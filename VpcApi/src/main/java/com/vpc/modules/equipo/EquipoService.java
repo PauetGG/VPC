@@ -27,4 +27,22 @@ public class EquipoService {
     public void deleteEquipo(Long id) {
         equipoRepository.deleteById(id);
     }
+    public List<EquipoEntity> searchEquipos(String query) {
+        return equipoRepository.findByNombreContainingIgnoreCase(query);
+    }
+
+    public List<EquipoEntity> getEquiposConDescripcion() {
+        return equipoRepository.findByDescripcionIsNotNullAndDescripcionNotOrderByNombreAsc("");
+    }
+
+    public EquipoEntity toggleDescripcion(Long id, String nuevaDescripcion) {
+        Optional<EquipoEntity> optionalEquipo = equipoRepository.findById(id);
+        if (optionalEquipo.isPresent()) {
+            EquipoEntity equipo = optionalEquipo.get();
+            equipo.setDescripcion(nuevaDescripcion);
+            return equipoRepository.save(equipo);
+        } else {
+            throw new RuntimeException("Equipo no encontrado con ID: " + id);
+        }
+    }
 }
