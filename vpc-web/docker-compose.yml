@@ -7,14 +7,16 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: vpc
+      MYSQL_DATABASE: vpc_dev
       MYSQL_USER: vpcuser
       MYSQL_PASSWORD: vpcpassword
+      
     ports:
       - '3307:3306'
     volumes:
       - ./mysql-data:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/init2.sql:/docker-entrypoint-initdb.d/init2.sql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
     healthcheck:  # ¡Nuevo! Para verificar que MySQL esté listo antes de que Spring arranque
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
@@ -31,6 +33,14 @@ services:
       mysql:
         condition: service_healthy  # Espera a que MySQL esté listo
     environment:  # Asegúrate de que Spring use estas credenciales
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vpc
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vpc_dev
       SPRING_DATASOURCE_USERNAME: vpcuser
       SPRING_DATASOURCE_PASSWORD: vpcpassword
+  # frontend:
+    #build:
+     # context: ../vpc-frontend
+      #dockerfile: Dockerfile
+    #ports:
+     # - '3000:3000'
+    #depends_on:
+     # - spring-api
