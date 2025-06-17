@@ -25,11 +25,15 @@ export default function Patrocinadors() {
       });
   }, []);
 
-  return (
+   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Patrocinadors</h1>
+    <div className="w-full flex justify-center mb-10">
+      <h1 className="text-4xl font-extrabold text-black text-center relative after:content-[''] after:absolute after:w-3/4 after:h-1 after:bg-black after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:rounded-full">
+        Patrocinadors
+      </h1>
+    </div>
       {loading ? (
-        <p>Carregant patrocinadors...</p>
+        <p className="text-center text-gray-500">Carregant patrocinadors...</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {patrocinadors.map(p => (

@@ -27,7 +27,7 @@ export default function Footer() {
       <nav className="flex flex-wrap justify-center space-x-4 text-sm font-semibold uppercase mb-6">
         <Link to="/" className="hover:text-[oklch(0.87_0.17_100.69)]">Inici</Link>
         <Link to="/equips" className="hover:text-[oklch(0.87_0.17_100.69)]">Equips</Link>
-        <Link to="/club" className="hover:text-[oklch(0.87_0.17_100.69)]">El Club</Link>
+        <Link to="/historia" className="hover:text-[oklch(0.87_0.17_100.69)]">El Club</Link>
         <Link to="/socis" className="hover:text-[oklch(0.87_0.17_100.69)]">Socis</Link>
         <Link to="/noticies" className="hover:text-[oklch(0.87_0.17_100.69)]">Notícies</Link>
         <Link to="/patrocinadors" className="hover:text-[oklch(0.87_0.17_100.69)]">Patrocinadors</Link>
